@@ -1,0 +1,38 @@
+节假日信息服务操作说明
+
+
+登录地址：http://ip:port/index.html
+
+注册地址：http://ip:port/register.html
+
+专属节假日配置：http://ip:port/specil/index/1/8.html
+
+法定节假日配置：http://ip:port/general/index/1/8.html
+
+调用方法：
+1   获取token,地址：http://ip:port/oauth/token?client_id=mobile_1&client_secret=secret_1&grant_type=password&username=aa&password=aa
+返回信息为：
+{
+       access_token:"37f5752791ab48c9ac87b891287560b9"，
+             expires_in:9999，
+             refresh_token:"afa530e882bb4e93b99da9287d16b737"，
+             scope:"read trust write"，
+            token_type:"bearer"
+}
+说明： access_token为获取到的token，第二步需要用到
+	  expires_in：token失效时间（单位秒）
+	  refresh_token:刷新token需要传的参数
+刷新token地址：http://ip:port/oauth/token?client_id=mobile_1&client_secret=secret_1&grant_type=refresh_token&refresh_token=afa530e882bb4e93b99da9287d16b737
+
+
+2   获取信息：http://ip:port/cheeryDay/isCheeryDay.html?access_token=a2d1a48c3bc04a39a0c5794669f0e024&dateString=2016-10-23
+
+返回信息为：
+{
+         success: true,
+         msg: "节假日",
+           chinese: "霜降"
+}
+
+说明：success，true表示为节假日， chinese，为24节气字段，如果不是24节气则返回空字符串
+			
